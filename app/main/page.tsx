@@ -28,13 +28,16 @@ export default async function Main() {
   return (
     <div className="bg-background-main">
       <Header />
-      <MainImage data={await getMovies(sliderInfo[1].url)} />
+      <MainImage data={await getMovies(sliderInfo[0].url)} />
       <PlayBar />
-      {sliderInfo.map(async (slider) => (
+      {sliderInfo.map(async (slider, index) => (
         <CustomSlider
+          key={slider.url}
           text={slider.text}
           data={await getMovies(slider.url)}
-          className="mt-[2.2rem]"
+          className={`mt-[2.2rem] ${
+            sliderInfo.length === index + 1 ? "pb-[7rem]" : null
+          }`}
         />
       ))}
       <Footer />
