@@ -28,7 +28,7 @@ export default async function Main() {
   return (
     <div className="bg-background-main">
       <Header />
-      <MainImage data={await getMovies(sliderInfo[0].url)} />
+      <MainImage data={await getMovies(sliderInfo[1].url)} />
       <PlayBar />
       {sliderInfo.map(async (slider) => (
         <CustomSlider
