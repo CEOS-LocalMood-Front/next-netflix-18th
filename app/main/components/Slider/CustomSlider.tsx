@@ -6,12 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import Slider from "react-slick";
 import { getMoviePoster } from "../../utils/get-movie-poster";
-
-interface CustomSliderProps<T> {
-  text: string;
-  data: (T & { id: number; poster_path: string })[];
-  className?: string;
-}
+import { CustomSliderProps } from "../../state/slider-state";
 
 export default function CustomSlider<T>({
   text,

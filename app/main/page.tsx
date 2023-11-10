@@ -1,10 +1,10 @@
 import CustomSlider from "./components/Slider/CustomSlider";
 import getMovies from "./queries/getMovies";
 import { getPopularMovieResponse } from "./queries/dto/get-popular-movie";
-import MainImage from "../common/components/MainImage";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
 import PlayBar from "../common/components/PlayBar";
+import ImageSlider from "./components/Slider/ImageSlider";
 
 export default async function Main() {
   const sliderInfo = [
@@ -28,7 +28,9 @@ export default async function Main() {
   return (
     <div className="bg-background-main">
       <Header />
-      <MainImage data={await getMovies(sliderInfo[0].url)} />
+      <ImageSlider<getPopularMovieResponse>
+        data={await getMovies(sliderInfo[0].url)}
+      />
       <PlayBar />
       {sliderInfo.map(async (slider, index) => (
         <CustomSlider<getPopularMovieResponse>
