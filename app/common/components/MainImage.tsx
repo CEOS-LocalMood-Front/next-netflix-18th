@@ -7,11 +7,15 @@ export const MainImage = ({ data }: any) => {
   const [imgIndex, setImgIndex] = useState(0);
   useEffect(() => {
     setInterval(() => {
-      setImgIndex((prev) => prev + 1);
+      if (data.length > imgIndex + 1) {
+        setImgIndex((prev) => prev + 1);
+      } else {
+        setImgIndex(0);
+      }
     }, 4500);
   }, []);
   return (
-    <div className="z-0">
+    <div className="z-0 p">
       <img
         src={getMoviePoster(data[imgIndex].poster_path)}
         alt="poster"
