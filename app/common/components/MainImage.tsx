@@ -1,11 +1,19 @@
-import getMovies from "@/app/main/queries/getMovies";
-import { getMoviePoster } from "@/app/main/utils/get-movie-poster";
+"use client";
 
-export const MainImage = async ({ data }: any) => {
+import { getMoviePoster } from "@/app/main/utils/get-movie-poster";
+import { useEffect, useState } from "react";
+
+export const MainImage = ({ data }: any) => {
+  const [imgIndex, setImgIndex] = useState(0);
+  useEffect(() => {
+    setInterval(() => {
+      setImgIndex((prev) => prev + 1);
+    }, 4500);
+  }, []);
   return (
     <div className="z-0">
       <img
-        src={getMoviePoster(data[0].poster_path)}
+        src={getMoviePoster(data[imgIndex].poster_path)}
         alt="poster"
         className="relative w-full h-[41.5rem]"
       />
