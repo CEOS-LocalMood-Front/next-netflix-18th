@@ -1,8 +1,17 @@
 "use client";
 
-import Lottie from "lottie-react";
+import Lottie from "react-lottie-player";
 import { netflix } from "../common/assets";
+import { useRouter } from "next/navigation";
 
 export default function LandingNetflix() {
-  return <Lottie animationData={netflix} />;
+  const router = useRouter();
+  return (
+    <Lottie
+      animationData={netflix}
+      loop={false}
+      play
+      onComplete={() => router.push("/main")}
+    />
+  );
 }

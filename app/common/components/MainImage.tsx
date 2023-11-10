@@ -1,8 +1,11 @@
-export const MainImage = () => {
+import getMovies from "@/app/main/queries/getMovies";
+import { getMoviePoster } from "@/app/main/utils/get-movie-poster";
+
+export const MainImage = async ({ data }: any) => {
   return (
     <div className="z-0">
       <img
-        src="https://i.namu.wiki/i/xNrcHofDqsp_wkeZMoc4dNV9TwexwXT2Br46HFJ29udUIfmgiuEhtuGRBvOdQZjFLjOiFMCJAkPb3-2VC2orDg.webp"
+        src={getMoviePoster(data[0].poster_path)}
         alt="poster"
         className="relative w-full h-[41.5rem]"
       />

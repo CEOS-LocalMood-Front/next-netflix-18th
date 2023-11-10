@@ -56,18 +56,10 @@ export default function CustomSlider<T>({
         {data.map((movie) => (
           <img
             key={movie.id}
-            className="h-[16.1rem]"
+            className="h-[16.1rem] w-[16.1rem]"
             src={getMoviePoster(movie.poster_path)}
           />
         ))}
-        {/* <div className="h-[16.1rem] bg-red-500" />
-      <div className="h-[16.1rem] bg-green-500" />
-      <div className="h-[16.1rem] bg-red-500" />
-      <div className="h-[16.1rem] bg-green-500" />
-      <div className="h-[16.1rem] bg-red-500" />
-      <div className="h-[16.1rem] bg-green-500" />
-      <div className="h-[16.1rem] bg-red-500" />
-      <div className="h-[16.1rem] bg-green-500" /> */}
       </StyledSlider>
     </div>
   );

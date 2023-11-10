@@ -28,8 +28,15 @@ export default async function Main() {
   return (
     <div className="bg-background-main">
       <Header />
-      <MainImage />
+      <MainImage data={await getMovies(sliderInfo[0].url)} />
       <PlayBar />
+      {sliderInfo.map(async (slider) => (
+        <CustomSlider
+          text={slider.text}
+          data={await getMovies(slider.url)}
+          className="mt-[2.2rem]"
+        />
+      ))}
       <Footer />
     </div>
   );
