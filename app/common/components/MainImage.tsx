@@ -7,13 +7,13 @@ export const MainImage = ({ data }: any) => {
   const [imgIndex, setImgIndex] = useState(0);
   useEffect(() => {
     setInterval(() => {
-      if (data.length > imgIndex + 1) {
+      if (imgIndex < 5) {
         setImgIndex((prev) => prev + 1);
       } else {
         setImgIndex(0);
       }
     }, 4500);
-  }, []);
+  }, [imgIndex]);
   return (
     <div className="z-0 p">
       <img
