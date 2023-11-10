@@ -15,6 +15,7 @@ export default function ImageSlider<T>({
     infinite: true,
     autoplay: true,
     autoplaySpeed: 5000,
+    pauseOnHover: false,
     swipeToSlide: true,
     slidesToShow: 1,
     slidesToScroll: 1,
