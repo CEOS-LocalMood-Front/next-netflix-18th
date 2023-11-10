@@ -31,7 +31,7 @@ export default async function Main() {
       <MainImage data={await getMovies(sliderInfo[0].url)} />
       <PlayBar />
       {sliderInfo.map(async (slider, index) => (
-        <CustomSlider
+        <CustomSlider<getPopularMovieResponse>
           key={slider.url}
           text={slider.text}
           data={await getMovies(slider.url)}
