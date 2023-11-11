@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import { getMoviePoster } from "../../utils/get-movie-poster";
 import { CustomSliderProps } from "../../state/slider-state";
 
+//react-slick을 활용한 슬라이더 컴포넌트(확장성 고려한 제네릭 컴포넌트)
 export default function CustomSlider<T>({
   text,
   data,
