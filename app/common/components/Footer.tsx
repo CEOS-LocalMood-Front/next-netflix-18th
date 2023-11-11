@@ -31,7 +31,10 @@ export const Footer = () => {
   return (
     <div className="fixed inset-x-0 bottom-0 flex footer-text items-center justify-center pt-2 pb-2 bg-footerBackground-main text-footerIcon-main bg-background-main">
       {FooterState.map((state) => (
-        <div className="w-1/5 flex flex-col text-center cursor-pointer items-center h-full">
+        <div
+          key={state.text}
+          className="w-1/5 flex flex-col text-center cursor-pointer items-center h-full"
+        >
           <state.icon style={{ fontSize: "2.4rem" }} />
           <div className="mt-px">{state.text}</div>
         </div>

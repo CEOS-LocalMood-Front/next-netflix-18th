@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export const Header = () => {
   const [scroll, setScroll] = useState(false);
+  const HeaderState = ["TV Shows", "Movies", "My List"];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,15 +31,14 @@ export const Header = () => {
       }`}
     >
       <SiNetflix style={{ fontSize: "3.2rem", color: "#B1060F" }} />
-      <a className="hover:text-button-main cursor-pointer transition duration-300 ease-in-out">
-        TV Shows
-      </a>
-      <a className="hover:text-button-main cursor-pointer transition duration-300 ease-in-out">
-        Movies
-      </a>
-      <a className="hover:text-button-main cursor-pointer transition duration-300 ease-in-out">
-        My List
-      </a>
+      {HeaderState.map((state) => (
+        <a
+          key={state}
+          className="hover:text-button-main cursor-pointer transition duration-300 ease-in-out"
+        >
+          {state}
+        </a>
+      ))}
     </div>
   );
 };
