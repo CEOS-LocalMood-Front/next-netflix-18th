@@ -65,7 +65,7 @@ export default function CustomSlider<T>({
           {text}
         </div>
       )}
-      <StyledSlider {...settings} $type={type}>
+      <StyledSlider {...settings}>
         {data.map((movie) => (
           <div key={movie.id}>
             <img
@@ -88,6 +88,6 @@ export default function CustomSlider<T>({
 
 const StyledSlider = styled(Slider)<{ $type: string }>`
   .slick-slide {
-    padding-left: ${(props) => (props.$type === "small" ? "0.7rem" : 0)};
+    padding-left: 0.7rem;
   }
 `;
