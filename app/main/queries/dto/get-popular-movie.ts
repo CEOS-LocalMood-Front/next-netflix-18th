@@ -1,4 +1,5 @@
-export interface getPopularMovieResponse {
+// 메인 페이지 슬라이더 데이터 상태
+export interface getMainSliderMovieResponse {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
