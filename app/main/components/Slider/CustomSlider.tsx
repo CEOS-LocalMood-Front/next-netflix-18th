@@ -10,59 +10,84 @@ import { CustomSliderProps } from "../../state/slider-state";
 
 //react-slick을 활용한 슬라이더 컴포넌트(확장성 고려한 제네릭 컴포넌트)
 export default function CustomSlider<T>({
+  type,
   text,
   data,
   className,
 }: CustomSliderProps<T>) {
-  const settings = {
-    arrows: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-    swipeToSlide: true,
-    responsive: [
-      {
-        breakpoint: 2000,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-    ],
-  };
+  const settings =
+    type === "small"
+      ? {
+          arrows: false,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          pauseOnHover: true,
+          swipeToSlide: true,
+          responsive: [
+            {
+              breakpoint: 2000,
+              settings: {
+                slidesToShow: 6,
+                slidesToScroll: 2,
+              },
+            },
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 2,
+              },
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 2,
+              },
+            },
+          ],
+        }
+      : {
+          arrows: false,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          pauseOnHover: false,
+          swipeToSlide: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        };
   return (
     <div className={twMerge("bg-background-main", className)}>
-      <div className="font-sub text-white mb-[1.4rem] pl-[1.1rem]">{text}</div>
-      <StyledSlider {...settings}>
+      {text && (
+        <div className="font-sub text-white mb-[1.4rem] pl-[1.1rem]">
+          {text}
+        </div>
+      )}
+      <StyledSlider {...settings} $type={type}>
         {data.map((movie) => (
-          <img
-            key={movie.id}
-            className="h-[16.1rem] w-[16.1rem]"
-            src={getMoviePoster(movie.poster_path)}
-          />
+          <div key={movie.id}>
+            <img
+              className={
+                type === "small"
+                  ? "h-[16.1rem] w-[16.1rem]"
+                  : "relative w-full h-[41.5rem]"
+              }
+              src={getMoviePoster(movie.poster_path)}
+            />
+            {type === "big" && (
+              <div className="absolute top-0 w-full h-[58rem] z-[10] bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            )}
+          </div>
         ))}
       </StyledSlider>
     </div>
   );
 }
 
-const StyledSlider = styled(Slider)`
+const StyledSlider = styled(Slider)<{ $type: string }>`
   .slick-slide {
-    padding-left: 0.7rem;
+    padding-left: ${(props) => (props.$type === "small" ? "0.7rem" : 0)};
   }
 `;

@@ -1,5 +1,6 @@
 export interface CustomSliderProps<T> {
-  text: string;
+  type: "big" | "small";
+  text?: string;
   data: (T & { id: number; poster_path: string })[];
   className?: string;
 }
