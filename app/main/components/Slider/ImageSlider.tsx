@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { getMoviePoster } from "../../utils/get-movie-poster";
-import { getPopularMovieResponse } from "../../queries/dto/get-popular-movie";
 import { CustomSliderProps } from "../../state/slider-state";
 
 export default function ImageSlider<T>({

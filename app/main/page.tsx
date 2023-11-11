@@ -37,7 +37,7 @@ export default async function Main() {
           key={slider.url}
           text={slider.text}
           data={await getMovies(slider.url)}
-          className={`mt-[2.2rem] ${
+          className={`mt-[2.2rem] pl-[0.5rem] ${
             sliderInfo.length === index + 1 ? "pb-[7rem]" : null
           }`}
         />

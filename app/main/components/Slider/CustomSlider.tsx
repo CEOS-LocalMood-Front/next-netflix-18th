@@ -46,7 +46,7 @@ export default function CustomSlider<T>({
     ],
   };
   return (
-    <div className={twMerge("bg-background-main pl-[0.5rem]", className)}>
+    <div className={twMerge("bg-background-main", className)}>
       <div className="font-sub text-white mb-[1.4rem] pl-[1.1rem]">{text}</div>
       <StyledSlider {...settings}>
         {data.map((movie) => (
