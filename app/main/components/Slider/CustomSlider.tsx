@@ -28,6 +28,13 @@ export default function CustomSlider<T>({
             {
               breakpoint: 2000,
               settings: {
+                slidesToShow: 7,
+                slidesToScroll: 3,
+              },
+            },
+            {
+              breakpoint: 1400,
+              settings: {
                 slidesToShow: 6,
                 slidesToScroll: 2,
               },
