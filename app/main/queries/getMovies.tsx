@@ -1,5 +1,5 @@
 export default async function getMovies(url: string) {
-  const apiKey = process.env.NEXT_PUBLIC_ACCESS_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const headers = {
     Authorization: `Bearer ${apiKey}`,
   };
