@@ -20,4 +20,7 @@ export const customColors = {
   hoverColor: {
     main: "#A9A9A9",
   },
+  searchBar: {
+    main: "#424242",
+  },
 };
