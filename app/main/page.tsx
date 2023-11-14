@@ -9,19 +9,19 @@ export default async function Main() {
   const sliderInfo = [
     {
       text: "Popular on Netflix",
-      url: "https://api.themoviedb.org/3/movie/popular",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/popular`,
     },
     {
       text: "Now Playing",
-      url: "https://api.themoviedb.org/3/movie/now_playing",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/now_playing`,
     },
     {
       text: "Top Rated",
-      url: "https://api.themoviedb.org/3/movie/top_rated",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/top_rated`,
     },
     {
       text: "Upcoming Contents",
-      url: "https://api.themoviedb.org/3/movie/upcoming",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/upcoming`,
     },
   ];
   return (
