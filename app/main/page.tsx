@@ -1,9 +1,9 @@
 import CustomSlider from "./components/Slider/CustomSlider";
 import getMovies from "./queries/getMovies";
 import { getMainSliderMovieResponse } from "./queries/dto/get-popular-movie";
-import Header from "../common/components/Header";
-import Footer from "../common/components/Footer";
-import PlayBar from "../common/components/PlayBar";
+import Header from "../common/components/layout/Header";
+import Footer from "../common/components/layout/Footer";
+import PlayBar from "../common/components/layout/PlayBar";
 
 export default async function Main() {
   const sliderInfo = [
