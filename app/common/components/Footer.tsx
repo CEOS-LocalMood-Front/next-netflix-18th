@@ -5,8 +5,12 @@ import { MdOutlineVideoLibrary } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 export const Footer = () => {
+  const pathname = usePathname();
+
   const FooterState = [
     {
       id: 0,
@@ -34,7 +38,6 @@ export const Footer = () => {
       id: 4,
       text: "More",
       icon: GiHamburgerMenu,
-      link: "/main",
     },
   ];
   return (
@@ -43,7 +46,10 @@ export const Footer = () => {
         <Link
           href={state.link || "/"}
           key={state.id}
-          className="w-1/5 flex flex-col text-center cursor-pointer items-center h-full"
+          className={clsx(
+            "w-1/5 flex flex-col text-center cursor-pointer items-center h-full",
+            { "text-menu-main": pathname === state.link }
+          )}
         >
           <state.icon style={{ fontSize: "2.4rem" }} />
           <div className="mt-px">{state.text}</div>
