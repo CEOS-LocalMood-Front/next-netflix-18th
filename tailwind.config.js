@@ -67,8 +67,8 @@ module.exports = {
         ".movie-detail-sub": {
           fontFamily: "SF-PRO, sans-serif",
           fontWeight: "400",
-          fontSize: "1.2rem",
-          lineHeight: "1.7rem",
+          fontSize: "1.6rem",
+          lineHeight: "2rem",
           letterSpacing: "-0.031px",
         },
       });
