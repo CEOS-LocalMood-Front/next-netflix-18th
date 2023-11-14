@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import { getMoviePoster } from "../../utils/get-movie-poster";
 import { CustomSliderProps } from "../../state/slider-state";
+import { useRouter } from "next/navigation";
 
 //react-slick을 활용한 슬라이더 컴포넌트(확장성 고려한 제네릭 컴포넌트)
 export default function CustomSlider<T>({
@@ -15,6 +16,7 @@ export default function CustomSlider<T>({
   data,
   className,
 }: CustomSliderProps<T>) {
+  const router = useRouter();
   const settings =
     type === "small"
       ? {
@@ -74,17 +76,20 @@ export default function CustomSlider<T>({
       )}
       <StyledSlider {...settings}>
         {data.map((movie) => (
-          <div key={movie.id}>
+          <div
+            key={movie.id}
+            onClick={() => router.push(`/detail/${movie.id}`)}
+          >
             <img
               className={
                 type === "small"
                   ? "h-[16.1rem] w-[16.1rem]"
-                  : "relative w-full h-[41.5rem]"
+                  : " w-full h-[41.5rem]"
               }
               src={getMoviePoster(movie.poster_path)}
             />
             {type === "big" && (
-              <div className="absolute top-0 w-full h-[58rem] z-[10] bg-gradient-to-t from-black via-transparent to-transparent"></div>
+              <div className="absolute top-0 w-full h-[68rem] z-[10] bg-gradient-to-t from-black via-transparent to-transparent"></div>
             )}
           </div>
         ))}
