@@ -1,8 +1,10 @@
 "use client";
-import Footer from "../common/components/Footer";
+
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
+import Footer from "../common/components/layout/Footer";
+import MovieList from "../main/components/Slider/SearchPage/MovieList";
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState("");
@@ -24,6 +26,7 @@ export default function SearchPage() {
       <div className="searchTitle-text text-menu-main py-[2.1rem]">
         Top Searches
       </div>
+      <MovieList />
       <Footer />
     </div>
   );

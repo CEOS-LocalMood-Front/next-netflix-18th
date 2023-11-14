@@ -85,6 +85,13 @@ module.exports = {
           lineHeight: "2rem",
           letterSpacing: "-0.031px",
         },
+        ".search-movie-title": {
+          fontFamily: "SF-PRO Display",
+          fontWeight: "400",
+          fontSize: "1.472rem",
+          lineHeight: "3rem",
+          letterSpacing: "0.751px",
+        },
       });
     }),
   ],
