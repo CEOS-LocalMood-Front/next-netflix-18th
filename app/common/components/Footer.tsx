@@ -4,6 +4,7 @@ import { LuSearch } from "react-icons/lu";
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Link from "next/link";
 
 export const Footer = () => {
   const FooterState = [
@@ -39,14 +40,14 @@ export const Footer = () => {
   return (
     <div className="fixed inset-x-0 bottom-0 flex footer-text items-center justify-center pt-2 pb-2 bg-footerBackground-main text-footerIcon-main bg-background-main">
       {FooterState.map((state) => (
-        <a
+        <Link
           href={state.link || "/"}
           key={state.id}
           className="w-1/5 flex flex-col text-center cursor-pointer items-center h-full"
         >
           <state.icon style={{ fontSize: "2.4rem" }} />
           <div className="mt-px">{state.text}</div>
-        </a>
+        </Link>
       ))}
     </div>
   );
