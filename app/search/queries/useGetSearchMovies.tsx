@@ -10,9 +10,11 @@ export async function getSearchMovies({
   pageParam: number;
 }) {
   const response = await searchAxiosInstance.get<any>("/search/movie", {
-    params: { query: searchText, page: pageParam },
+    params: {
+      query: searchText,
+      page: pageParam,
+    },
   });
-
   const searchFetchedMovies = response.data;
   return searchFetchedMovies;
 }
