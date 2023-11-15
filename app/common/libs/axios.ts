@@ -6,3 +6,10 @@ export const axiosInstance = axios.create({
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
   },
 });
+
+export const searchAxiosInstance = axios.create({
+  baseURL: process.env.NEXT_SEARCH_BASE_URL,
+  headers: {
+    Authorization: `Bearer ${process.env.NEXT_SEARCH_API_KEY}`,
+  },
+});
