@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
 import Footer from "../common/components/layout/Footer";
-import MovieList from "../main/components/Slider/SearchPage/MovieList";
+import MovieList from "./components/MovieList";
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState("");
