@@ -14,7 +14,6 @@ export async function getSearchMovies({
   });
 
   const searchFetchedMovies = response.data;
-  console.log(searchFetchedMovies);
   return searchFetchedMovies;
 }
 
