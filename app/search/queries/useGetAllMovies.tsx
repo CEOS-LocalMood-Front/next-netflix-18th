@@ -17,13 +17,12 @@ export async function getNowPlayingMovies({
 export default function useGetAllMovies() {
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ["getAllMovie"],
-    queryFn: ({ pageParam }) =>
+    queryFn: ({ pageParam = 1 }) =>
       getNowPlayingMovies({
         pageParam,
       }),
     getNextPageParam: (lastPage) =>
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
-    suspense: true,
   });
 
   const getByFarMovieData: any =
