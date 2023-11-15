@@ -21,6 +21,7 @@ export default function MovieList() {
               src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
               className="w-[14.6rem] h-[7.6rem] object-cover"
             />
+
             <div className="flex justify-between items-center w-full px-[1.4rem]">
               <div className="text-menu-main search-movie-title">
                 {data.title}
