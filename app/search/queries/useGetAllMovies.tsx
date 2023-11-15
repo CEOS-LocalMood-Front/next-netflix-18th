@@ -41,14 +41,8 @@ export default function useGetAllMovies() {
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
   });
 
-  // data가 존재하면 results를 flat하고 그렇지 않으면 null
-  const rawMovieData = data?.pages.map((page) => page.results).flat();
-  const getByFarMovieData: IMovie[] = rawMovieData ? rawMovieData : [];
-  console.log(getByFarMovieData);
-
-  //const getByFarMovieData:IMovie[]=
-  //  data?.pages.map((page) => page.results).flat() || null;
-  //console.log(getByFarMovieData);
+  const rawMovieData = data?.pages.map((page) => page.results).flat() || [];
+  const getByFarMovieData: IMovie[] = rawMovieData;
 
   return {
     getByFarMovieData,

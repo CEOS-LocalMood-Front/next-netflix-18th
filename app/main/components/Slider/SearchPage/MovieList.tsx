@@ -3,39 +3,15 @@ import useGetAllMovies, {
 } from "@/app/search/queries/useGetAllMovies";
 import { BiPlayCircle } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroller";
+import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
 
 export default function MovieList() {
   const { getByFarMovieData, hasNextPage, fetchNextPage } = useGetAllMovies();
-  // const getNowPlayingMovies = async ({
-  //   pageParam = 1,
-  // }: {
-  //   pageParam: number;
-  // }) => {
-  //   const response = await axiosInstance.get("/now_playing", {
-  //     params: { page: pageParam },
-  //   });
-
-  //   console.log(response);
-  //   const fetchedMovies = response.data;
-  //   console.log(fetchedMovies);
-  //   return fetchedMovies;
-  // };
-
-  // const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery(
-  //   ["pageParam"],
-  //   ({ pageParam = 1 }) => getNowPlayingMovies({pageParam}),
-  //   {
-  //     getNextPageParam: (lastPage) => {
-  //       const currentPage=lastPage?.[lastPage.length-1]?page||1;
-  //       return currentPage+1;
-  //     },
-  //   }
-  // );
 
   return (
     <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
       {getByFarMovieData &&
-        getByFarMovieData.map((data: any) => (
+        getByFarMovieData.map((data: IMovie) => (
           <div
             key={data.id}
             className="flex bg-searchBar-main items-center mb-[0.3rem]"
