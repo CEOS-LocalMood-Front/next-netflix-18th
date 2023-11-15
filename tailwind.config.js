@@ -89,8 +89,8 @@ module.exports = {
           fontFamily: "SF-PRO Display",
           fontWeight: "400",
           fontSize: "1.472rem",
-          lineHeight: "3rem",
-          letterSpacing: "0.751px",
+          lineHeight: "1.7rem",
+          letterSpacing: "0.4px",
         },
       });
     }),

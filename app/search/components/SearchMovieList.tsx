@@ -33,7 +33,9 @@ export default function SearchMovieList({ searchText }: SearchMovieListProps) {
               <div className="text-menu-main search-movie-title">
                 {data.title}
               </div>
-              <BiPlayCircle style={{ fontSize: "2.8rem", color: "FFFFFF" }} />
+              <div className="w-[2.8rem] ml-[0.5rem]">
+                <BiPlayCircle style={{ fontSize: "2.8rem", color: "FFFFFF" }} />
+              </div>
             </div>
           </div>
         ))}
