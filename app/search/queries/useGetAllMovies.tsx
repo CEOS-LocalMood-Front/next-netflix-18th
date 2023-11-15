@@ -23,7 +23,7 @@ export default function useGetAllMovies() {
       }),
     getNextPageParam: (lastPage) =>
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
-    initialPageParam: 1,
+    suspense: true,
   });
 
   const getByFarMovieData: any =
