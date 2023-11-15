@@ -101,6 +101,7 @@ export default function CustomSlider<T>({
                     : "(max-width: 375px) 33vw (max-width: 768px) 25vw (max-width: 1024px) 18vw (max-width: 1400px) 16.5vw , 14.2vw"
                 }
                 fill={true}
+                priority
               />
             </div>
 
