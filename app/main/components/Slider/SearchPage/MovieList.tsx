@@ -1,10 +1,6 @@
-import { axiosInstance } from "@/app/common/libs/axios";
-import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
 import useGetAllMovies, {
   getNowPlayingMovies,
 } from "@/app/search/queries/useGetAllMovies";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import { BiPlayCircle } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroller";
 

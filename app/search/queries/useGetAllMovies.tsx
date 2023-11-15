@@ -1,15 +1,31 @@
 import { axiosInstance } from "@/app/common/libs/axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
+
+interface DateRange {
+  maximum: string;
+  minimum: string;
+}
+
+interface NowPlayingMoviesResponse {
+  dates: DateRange;
+  page: number;
+  results: IMovie[];
+  total_pages: number;
+  total_results: number;
+}
 
 export async function getNowPlayingMovies({
   pageParam,
 }: {
   pageParam: number;
-}) {
-  const response = await axiosInstance.get<any>("/now_playing", {
-    params: { page: pageParam },
-  });
-
+}): Promise<NowPlayingMoviesResponse> {
+  const response = await axiosInstance.get<NowPlayingMoviesResponse>(
+    "/now_playing",
+    {
+      params: { page: pageParam },
+    }
+  );
   const fetchedMovies = response.data;
   return fetchedMovies;
 }
@@ -25,8 +41,14 @@ export default function useGetAllMovies() {
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
   });
 
-  const getByFarMovieData: any =
-    data?.pages.map((page) => page.results).flat() || null;
+  // data가 존재하면 results를 flat하고 그렇지 않으면 null
+  const rawMovieData = data?.pages.map((page) => page.results).flat();
+  const getByFarMovieData: IMovie[] = rawMovieData ? rawMovieData : [];
+  console.log(getByFarMovieData);
+
+  //const getByFarMovieData:IMovie[]=
+  //  data?.pages.map((page) => page.results).flat() || null;
+  //console.log(getByFarMovieData);
 
   return {
     getByFarMovieData,
