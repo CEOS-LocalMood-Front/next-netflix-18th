@@ -3,11 +3,11 @@
 import { twMerge } from "tailwind-merge";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
 import Slider from "react-slick";
 import { getMoviePoster } from "../../utils/get-movie-poster";
 import { CustomSliderProps } from "../../state/slider-state";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 //react-slick을 활용한 슬라이더 컴포넌트(확장성 고려한 제네릭 컴포넌트)
 export default function CustomSlider<T>({
@@ -55,6 +55,13 @@ export default function CustomSlider<T>({
                 slidesToScroll: 2,
               },
             },
+            {
+              breakpoint: 375,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+              },
+            },
           ],
         }
       : {
@@ -74,32 +81,36 @@ export default function CustomSlider<T>({
           {text}
         </div>
       )}
-      <StyledSlider {...settings}>
+      <Slider {...settings}>
         {data.map((movie) => (
           <div
             key={movie.id}
             onClick={() => router.push(`/detail/${movie.id}`)}
           >
-            <img
-              className={
-                type === "small"
-                  ? "h-[16.1rem] w-[16.1rem]"
-                  : " w-full h-[41.5rem]"
-              }
-              src={getMoviePoster(movie.poster_path)}
-            />
+            <div
+              className={`${
+                type === "small" ? "h-[16.1rem]" : " w-full h-[41.5rem]"
+              } relative ${type === "small" ? "ml-[0.7rem]" : null}`}
+            >
+              <Image
+                alt="포스터 사진"
+                src={getMoviePoster(movie.poster_path)}
+                sizes={
+                  type === "big"
+                    ? "100vw"
+                    : "(max-width: 375px) 33vw (max-width: 768px) 25vw (max-width: 1024px) 18vw (max-width: 1400px) 16.5vw , 14.2vw"
+                }
+                fill={true}
+                priority
+              />
+            </div>
+
             {type === "big" && (
               <div className="absolute top-0 w-full h-[68rem] z-[10] bg-gradient-to-t from-black via-transparent to-transparent"></div>
             )}
           </div>
         ))}
-      </StyledSlider>
+      </Slider>
     </div>
   );
 }
-
-const StyledSlider = styled(Slider)<{ $type: string }>`
-  .slick-slide {
-    padding-left: 0.7rem;
-  }
-`;
