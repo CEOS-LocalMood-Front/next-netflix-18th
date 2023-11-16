@@ -39,6 +39,7 @@ export default function useGetAllMovies() {
       }),
     getNextPageParam: (lastPage) =>
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
+    suspense: true,
   });
   const rawMovieData = data?.pages.map((page) => page.results).flat() || [];
   const getByFarMovieData: IMovie[] = rawMovieData;
