@@ -4,9 +4,12 @@ import useGetAllMovies, {
 import { BiPlayCircle } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroller";
 import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function MovieList() {
   const { getByFarMovieData, hasNextPage, fetchNextPage } = useGetAllMovies();
+  const pathname = usePathname();
 
   return (
     <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
@@ -29,9 +32,12 @@ export default function MovieList() {
               <div className="text-menu-main search-movie-title">
                 {data.title}
               </div>
-              <div className="w-[2.8rem] ml-[0.5rem]">
+              <Link
+                href={`/detail/${data.id}`}
+                className="w-[2.8rem] ml-[0.5rem] cursor-pointer"
+              >
                 <BiPlayCircle style={{ fontSize: "2.8rem", color: "FFFFFF" }} />
-              </div>
+              </Link>
             </div>
           </div>
         ))}
