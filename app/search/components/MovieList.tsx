@@ -5,11 +5,9 @@ import { BiPlayCircle } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroller";
 import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function MovieList() {
   const { getByFarMovieData, hasNextPage, fetchNextPage } = useGetAllMovies();
-  const pathname = usePathname();
 
   return (
     <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>

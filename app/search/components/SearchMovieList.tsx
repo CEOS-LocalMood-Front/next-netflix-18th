@@ -2,6 +2,7 @@ import { BiPlayCircle } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroller";
 import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
 import useGetSearchMovies from "../queries/useGetSearchMovies";
+import Link from "next/link";
 
 type SearchMovieListProps = {
   searchText: string;
@@ -33,9 +34,12 @@ export default function SearchMovieList({ searchText }: SearchMovieListProps) {
               <div className="text-menu-main search-movie-title">
                 {data.title}
               </div>
-              <div className="w-[2.8rem] ml-[0.5rem]">
+              <Link
+                href={`/detail/${data.id}`}
+                className="w-[2.8rem] ml-[0.5rem] cursor-pointer"
+              >
                 <BiPlayCircle style={{ fontSize: "2.8rem", color: "FFFFFF" }} />
-              </div>
+              </Link>
             </div>
           </div>
         ))}
