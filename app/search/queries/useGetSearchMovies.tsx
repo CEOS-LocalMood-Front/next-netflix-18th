@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/app/common/libs/axios";
+import { searchAxiosInstance } from "@/app/common/libs/axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
 
@@ -7,7 +7,7 @@ interface DateRange {
   minimum: string;
 }
 
-interface NowPlayingMoviesResponse {
+interface SearchMovieResponse {
   dates: DateRange;
   page: number;
   results: IMovie[];
@@ -15,32 +15,42 @@ interface NowPlayingMoviesResponse {
   total_results: number;
 }
 
-export async function getNowPlayingMovies({
+export async function getSearchMovies({
+  searchText,
   pageParam,
 }: {
+  searchText: string;
   pageParam: number;
-}): Promise<NowPlayingMoviesResponse> {
-  const response = await axiosInstance.get<NowPlayingMoviesResponse>(
-    "/now_playing",
+}): Promise<SearchMovieResponse> {
+  const response = await searchAxiosInstance.get<SearchMovieResponse>(
+    "/search/movie",
     {
-      params: { page: pageParam },
+      params: {
+        query: searchText,
+        page: pageParam,
+      },
     }
   );
-  const fetchedMovies = response.data;
-  return fetchedMovies;
+  const searchFetchedMovies = response.data;
+  return searchFetchedMovies;
 }
 
-export default function useGetAllMovies() {
+export default function useGetSearchMovies({
+  searchText,
+}: {
+  searchText: string;
+}) {
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: ["getAllMovie"],
+    queryKey: ["getSearchMovie"],
     queryFn: ({ pageParam = 1 }) =>
-      getNowPlayingMovies({
+      getSearchMovies({
+        searchText,
         pageParam,
       }),
     getNextPageParam: (lastPage) =>
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
-    suspense: true,
   });
+
   const rawMovieData = data?.pages.map((page) => page.results).flat() || [];
   const getByFarMovieData: IMovie[] = rawMovieData;
 
