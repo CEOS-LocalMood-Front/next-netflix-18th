@@ -64,12 +64,33 @@ module.exports = {
           lineHeight: "3rem",
           letterSpacing: "-0.061px",
         },
+        ".searchBar-text": {
+          fontFamily: "SF-PRO, sans-serif",
+          fontWeight: "400",
+          fontSize: "1.52rem",
+          lineHeight: "3rem",
+          letterSpacing: "0.207px",
+        },
+        ".searchTitle-text": {
+          fontFamily: "SF-PRO Display",
+          fontWeight: "700",
+          fontSize: "2.6748rem",
+          lineHeight: "2rem",
+          letterSpacing: "-0.073px",
+        },
         ".movie-detail-sub": {
           fontFamily: "SF-PRO, sans-serif",
           fontWeight: "400",
           fontSize: "1.6rem",
           lineHeight: "2rem",
           letterSpacing: "-0.031px",
+        },
+        ".search-movie-title": {
+          fontFamily: "SF-PRO Display",
+          fontWeight: "400",
+          fontSize: "1.472rem",
+          lineHeight: "1.7rem",
+          letterSpacing: "0.4px",
         },
       });
     }),
