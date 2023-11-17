@@ -1,22 +1,68 @@
 import { BiPlayCircle } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroller";
 import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
-import useGetSearchMovies from "../queries/useGetSearchMovies";
+import { getSearchMovies } from "../queries/useGetSearchMovies";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type SearchMovieListProps = {
   searchText: string;
 };
 
+interface DateRange {
+  maximum: string;
+  minimum: string;
+}
+interface SearchMovieResponse {
+  dates: DateRange;
+  page: number;
+  results: IMovie[];
+  total_pages: number;
+  total_results: number;
+}
+
 export default function SearchMovieList({ searchText }: SearchMovieListProps) {
-  const { getByFarMovieData, hasNextPage, fetchNextPage } = useGetSearchMovies({
-    searchText,
+  const { data, hasNextPage, fetchNextPage } =
+    useInfiniteQuery<SearchMovieResponse>(
+      ["getSearchMovie", searchText],
+      ({ pageParam = 1 }) => getSearchMovies({ searchText, pageParam }),
+      {
+        getNextPageParam: (lastPage) =>
+          lastPage.page !== lastPage.total_pages
+            ? lastPage.page + 1
+            : undefined,
+      }
+    );
+
+  const [searchData, setSearchData] = useState<{
+    getByFarMovieData: IMovie[];
+    hasNextPage: boolean | undefined;
+    fetchNextPage: () => void;
+  }>({
+    getByFarMovieData: [],
+    hasNextPage: false,
+    fetchNextPage: () => {},
   });
 
+  useEffect(() => {
+    if (data) {
+      const rawMovieData = data?.pages.map((page) => page.results).flat() || [];
+      setSearchData({
+        getByFarMovieData: rawMovieData,
+        hasNextPage: hasNextPage,
+        fetchNextPage: fetchNextPage,
+      });
+    }
+  }, [data, hasNextPage, fetchNextPage]);
+
   return (
-    <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
-      {getByFarMovieData &&
-        getByFarMovieData.map((data: IMovie) => (
+    <InfiniteScroll
+      hasMore={searchData.hasNextPage}
+      loadMore={searchData.fetchNextPage}
+    >
+      {searchData.getByFarMovieData &&
+        searchData.getByFarMovieData.map((data: IMovie) => (
           <div
             key={data.id}
             className="flex bg-searchBar-main items-center mb-[0.3rem]"

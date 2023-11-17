@@ -11,6 +11,15 @@ import SearchMovieList from "./components/SearchMovieList";
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleCloseClick = () => {
+    setSearchText("");
+  };
+
   return (
     <div className="bg-background-main pt-[4.4rem]">
       <div className="flex items-center justify-around px-3 bg-searchBar-main h-[5.2rem]">
@@ -19,11 +28,11 @@ export default function SearchPage() {
           className="w-[27rem] h-[3.1rem] bg-searchBar-main text-button-main placeholder-current text-[1.5rem] searchBar-text placeholder-text-center"
           placeholder="Search for a show, movie, e.t.c."
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={handleInputChange}
         />
         <AiOutlineClose
           style={{ fontSize: "2rem", color: "C4C4C4", cursor: "pointer" }}
-          onClick={() => setSearchText("")}
+          onClick={handleCloseClick}
         />
       </div>
       <div className="searchTitle-text text-menu-main py-[2.1rem]">
