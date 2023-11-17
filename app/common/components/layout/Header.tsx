@@ -1,28 +1,10 @@
 "use client";
 import { SiNetflix } from "react-icons/si";
-import { useState, useEffect } from "react";
+import useHandleScroll from "../../hooks/useHandleScroll";
 
 export const Header = () => {
-  const [scroll, setScroll] = useState(false);
   const HeaderState = ["TV Shows", "Movies", "My List"];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentPosition = window.pageYOffset;
-
-      if (currentPosition >= 200) {
-        setScroll(true);
-      } else {
-        setScroll(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const { scroll } = useHandleScroll();
 
   return (
     <div
