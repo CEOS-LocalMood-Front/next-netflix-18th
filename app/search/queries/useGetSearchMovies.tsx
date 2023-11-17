@@ -17,38 +17,41 @@ interface SearchMovieResponse {
 
 export async function getSearchMovies({
   searchText,
+  api,
   pageParam,
 }: {
-  searchText: string;
+  searchText?: string;
+  api: string;
   pageParam: number;
 }): Promise<SearchMovieResponse> {
-  const response = await searchAxiosInstance.get<SearchMovieResponse>(
-    "/search/movie",
-    {
-      params: {
-        query: searchText,
-        page: pageParam,
-      },
-    }
-  );
+  const response = await searchAxiosInstance.get<SearchMovieResponse>(api, {
+    params: {
+      query: searchText,
+      page: pageParam,
+    },
+  });
   const searchFetchedMovies = response.data;
   return searchFetchedMovies;
 }
 
 export default function useGetSearchMovies({
   searchText,
+  api,
 }: {
-  searchText: string;
+  searchText?: string;
+  api: string;
 }) {
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: ["getSearchMovie"],
+    queryKey: ["getSearchMovie", api, searchText],
     queryFn: ({ pageParam = 1 }) =>
       getSearchMovies({
         searchText,
+        api,
         pageParam,
       }),
     getNextPageParam: (lastPage) =>
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
+    suspense: true,
   });
 
   const rawMovieData = data?.pages.map((page) => page.results).flat() || [];

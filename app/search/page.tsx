@@ -5,9 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { Suspense, useState } from "react";
 import Footer from "../common/components/layout/Footer";
 import MovieList from "./components/MovieList";
-import Skeleton from "./components/SearchMovieSkeleton";
 import SearchMovieSkeletonList from "./components/SearchMovieSkeletonList";
-import SearchMovieList from "./components/SearchMovieList";
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState("");
@@ -29,13 +27,9 @@ export default function SearchPage() {
       <div className="searchTitle-text text-menu-main py-[2.1rem]">
         Top Searches
       </div>
-      {!searchText ? (
-        <Suspense fallback={<SearchMovieSkeletonList />}>
-          <MovieList />
-        </Suspense>
-      ) : (
-        <SearchMovieList searchText={searchText} />
-      )}
+      <Suspense fallback={<SearchMovieSkeletonList />}>
+        <MovieList searchText={searchText} />
+      </Suspense>
       <Footer />
     </div>
   );

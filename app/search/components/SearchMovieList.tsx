@@ -11,6 +11,7 @@ type SearchMovieListProps = {
 export default function SearchMovieList({ searchText }: SearchMovieListProps) {
   const { getByFarMovieData, hasNextPage, fetchNextPage } = useGetSearchMovies({
     searchText,
+    api: "/search/movie",
   });
 
   return (

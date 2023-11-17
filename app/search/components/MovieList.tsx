@@ -1,13 +1,14 @@
-import useGetAllMovies, {
-  getNowPlayingMovies,
-} from "@/app/search/queries/useGetAllMovies";
 import { BiPlayCircle } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroller";
 import { IMovie } from "@/app/main/queries/dto/get-popular-movie";
 import Link from "next/link";
+import useGetSearchMovies from "../queries/useGetSearchMovies";
 
-export default function MovieList() {
-  const { getByFarMovieData, hasNextPage, fetchNextPage } = useGetAllMovies();
+export default function MovieList({ searchText }: { searchText: string }) {
+  const { getByFarMovieData, hasNextPage, fetchNextPage } = useGetSearchMovies({
+    api: searchText === "" ? "/movie/now_playing" : "/search/movie",
+    searchText: searchText === "" ? undefined : searchText,
+  });
 
   return (
     <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
