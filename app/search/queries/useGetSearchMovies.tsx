@@ -52,6 +52,7 @@ export default function useGetSearchMovies({
     getNextPageParam: (lastPage) =>
       lastPage.page !== lastPage.total_pages ? lastPage.page + 1 : undefined,
     suspense: true,
+    staleTime: 60 * 1000,
   });
 
   const rawMovieData = data?.pages.map((page) => page.results).flat() || [];
